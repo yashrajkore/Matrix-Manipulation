@@ -13,9 +13,9 @@ public class MatrixManipulation {
         switch(ch){
         
         case 1:
-        	System.out.print("Enter No. of Matrix : ");
-        	int l = in.nextInt();
-        	System.out.print("Enter row size: ");
+            System.out.print("Enter No. of Matrix : ");
+            int l = in.nextInt();
+            System.out.print("Enter row size: ");
             int m8 = in.nextInt();
             System.out.print("Enter column size: ");
             int n8 = in.nextInt();
@@ -41,9 +41,9 @@ public class MatrixManipulation {
             break;
             
 /*-------------------------------------------------------------------------*/
-            
+            // Addition
         case 2:
-        	System.out.print("Enter row size: ");
+            System.out.print("Enter row size: ");
             int m = in.nextInt();
             System.out.print("Enter column size: ");
             int n = in.nextInt();
@@ -74,9 +74,9 @@ public class MatrixManipulation {
             break;
             
 /*-------------------------------------------------------------------------*/
-            
+            // Subtraction
         case 3:
-        	System.out.print("Enter row size: ");
+            System.out.print("Enter row size: ");
             int m1 = in.nextInt();
             System.out.print("Enter column size: ");
             int n1 = in.nextInt();
@@ -107,9 +107,9 @@ public class MatrixManipulation {
             break;
             
 /*-------------------------------------------------------------------------*/            
-            
+            // Multiplication
         case 4:
-        	System.out.print("Enter row size: ");
+            System.out.print("Enter row size: ");
             int m2 = in.nextInt();
             System.out.print("Enter column size: ");
             int n2 = in.nextInt();
@@ -132,7 +132,7 @@ public class MatrixManipulation {
             int[][] arr23 = new int[m2][n2];
             for(int i=0;i<m2;i++) {
             	for(int j=0;j<n2;j++) {
-            		arr23[i][j] = arr21[i][j]+arr22[i][j];
+            		arr23[i][j] = arr21[i][j]*arr22[i][j];
             		System.out.print("\t"+arr23[i][j]);
             	}
             	System.out.println();
@@ -140,9 +140,9 @@ public class MatrixManipulation {
             break;
             
 /*-------------------------------------------------------------------------*/            
-            
-		case 5:
-        	System.out.print("Enter row size: ");
+            // Division
+	case 5:
+            System.out.print("Enter row size: ");
             int m3 = in.nextInt();
             System.out.print("Enter column size: ");
             int n3 = in.nextInt();
@@ -173,9 +173,9 @@ public class MatrixManipulation {
             break;
             
 /*-------------------------------------------------------------------------*/            
-            
+            // Transpose
         case 6:
-        	System.out.print("Enter row size: ");
+            System.out.print("Enter row size: ");
             int m4 = in.nextInt();
             System.out.print("Enter column size: ");
             int n4 = in.nextInt();
@@ -224,7 +224,7 @@ public class MatrixManipulation {
     }
     
 /*-------------------------------------------------------------------------*/
-    
+    // Function to find Inverse of matrix
     public static void findAndDisplayInverse() {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter row size: ");
