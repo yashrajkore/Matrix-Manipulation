@@ -4,307 +4,153 @@ public class MatrixManipulation {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        while(true) {
-        System.out.println("\n********************************************** Matrix Manipulation *****************************************");
-        System.out.println("\n1.Create Matrix \n2.Addition of Matrices\n3.Subtraction of Matrices\n4.Multiplication of Matrices\n5.Division of Matrices\n6.Transpose\n7.Inverse\n8.Exit");
-        System.out.print("\nSelect an option : ");
-        int ch = in.nextInt();
-        System.out.println();
-        switch(ch){
-        
-        case 1:
-            System.out.print("Enter No. of Matrix : ");
-            int l = in.nextInt();
-            System.out.print("Enter row size: ");
-            int m8 = in.nextInt();
-            System.out.print("Enter column size: ");
-            int n8 = in.nextInt();
-            int[][][] array=new int[m8][n8][l];
-            for(int k=0;k<l;k++) {
-            	System.out.println("Enter values of Matrix "+(k+1)+" : \n");
-            	for(int i=0;i<m8;i++) {
-            		for(int j=0;j<n8;j++) {
-            			System.out.print("a["+(i+1)+"]["+(j+1)+"] : ");
-            			array[i][j][k] = in.nextInt();
-            		}
-            	}
+        while (true) {
+            System.out.println("\n********************************************** Matrix Manipulation *****************************************");
+            System.out.println("\n1.Create Matrix \n2.Addition \n3.Subtraction \n4.Multiplication \n5.Transpose \n6.Inverse \n7.Exit");
+            System.out.print("\nSelect an option : ");
+            int ch = in.nextInt();
+            System.out.println();
+
+            switch (ch) {
+                case 1:
+                    System.out.print("Enter No. of Matrices: ");
+                    int l = in.nextInt();
+                    System.out.print("Enter row size: ");
+                    int rows = in.nextInt();
+                    System.out.print("Enter column size: ");
+                    int cols = in.nextInt();
+                    int[][][] mats = new int[rows][cols][l];
+                    for (int k = 0; k < l; k++) {
+                        System.out.println("Enter values for Matrix " + (k + 1) + ":");
+                        for (int i = 0; i < rows; i++) {
+                            for (int j = 0; j < cols; j++) {
+                                System.out.print("a[" + (i + 1) + "][" + (j + 1) + "] : ");
+                                mats[i][j][k] = in.nextInt();
+                            }
+                        }
+                    }
+                    for (int k = 0; k < l; k++) {
+                        System.out.println("\nMatrix " + (k + 1) + ":");
+                        printMatrix(mats, k);
+                    }
+                    break;
+
+                case 2: // Addition
+                    System.out.print("Enter rows and columns: ");
+                    int r2 = in.nextInt(); int c2 = in.nextInt();
+                    int[][] a2 = new int[r2][c2]; int[][] b2 = new int[r2][c2];
+                    fillMatrix(in, a2, "1st"); fillMatrix(in, b2, "2nd");
+                    System.out.println("Result:");
+                    for (int i = 0; i < r2; i++) {
+                        for (int j = 0; j < c2; j++) System.out.print("\t" + (a2[i][j] + b2[i][j]));
+                        System.out.println();
+                    }
+                    break;
+
+                case 4: // Multiplication
+                    System.out.print("Rows for Matrix A: "); int ra = in.nextInt();
+                    System.out.print("Cols for Matrix A (Rows for B): "); int ca = in.nextInt();
+                    System.out.print("Cols for Matrix B: "); int cb = in.nextInt();
+                    int[][] A = new int[ra][ca]; int[][] B = new int[ca][cb];
+                    fillMatrix(in, A, "A"); fillMatrix(in, B, "B");
+                    
+                    
+                    
+                    System.out.println("Result:");
+                    for (int i = 0; i < ra; i++) {
+                        for (int j = 0; j < cb; j++) {
+                            int sum = 0;
+                            for (int k = 0; k < ca; k++) sum += A[i][k] * B[k][j];
+                            System.out.print("\t" + sum);
+                        }
+                        System.out.println();
+                    }
+                    break;
+
+                case 5: // Transpose
+                    System.out.print("Rows and Cols: ");
+                    int rt = in.nextInt(); int ct = in.nextInt();
+                    int[][] T = new int[rt][ct];
+                    fillMatrix(in, T, "Matrix");
+                    System.out.println("Transpose:");
+                    for (int i = 0; i < ct; i++) {
+                        for (int j = 0; j < rt; j++) System.out.print("\t" + T[j][i]);
+                        System.out.println();
+                    }
+                    break;
+
+                case 6: // Inverse (Precise)
+                    findAndDisplayInverse(in);
+                    break;
+
+                case 7:
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice!");
             }
-            for(int k=0;k<l;k++) {
-            	System.out.println("\nMatrix "+(k+1)+" : \n");
-            	for(int i=0;i<m8;i++) {
-            		for(int j=0;j<n8;j++) {
-            			System.out.print("\t"+array[i][j][k]);
-            		}
-            		System.out.println();
-            	}
-            }
-            break;
-            
-/*-------------------------------------------------------------------------*/
-            // Addition
-        case 2:
-            System.out.print("Enter row size: ");
-            int m = in.nextInt();
-            System.out.print("Enter column size: ");
-            int n = in.nextInt();
-            
-            int[][] arr1 = new int[m][n];
-            int[][] arr2 = new int[m][n];
-            System.out.println("Enter elements for 1st matrix: ");
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    arr1[i][j] = in.nextInt();
-                }
-            }
-            System.out.println("Enter elements for 2nd matrix: ");
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    arr2[i][j] = in.nextInt();
-                }
-            }
-            System.out.println("Addition : \n");
-            int[][] arr3 = new int[m][n];
-            for(int i=0;i<m;i++) {
-            	for(int j=0;j<n;j++) {
-            		arr3[i][j] = arr1[i][j]+arr2[i][j];
-            		System.out.print("\t"+arr3[i][j]);
-            	}
-            	System.out.println();
-            }
-            break;
-            
-/*-------------------------------------------------------------------------*/
-            // Subtraction
-        case 3:
-            System.out.print("Enter row size: ");
-            int m1 = in.nextInt();
-            System.out.print("Enter column size: ");
-            int n1 = in.nextInt();
-            
-            int[][] arr11 = new int[m1][n1];
-            int[][] arr12 = new int[m1][n1];
-            System.out.println("Enter elements for 1st matrix: ");
-            for (int i = 0; i < m1; i++) {
-                for (int j = 0; j < n1; j++) {
-                    arr11[i][j] = in.nextInt();
-                }
-            }
-            System.out.println("Enter elements for 2nd matrix: ");
-            for (int i = 0; i < m1; i++) {
-                for (int j = 0; j < n1; j++) {
-                    arr12[i][j] = in.nextInt();
-                }
-            }
-            System.out.println("Subtraction : \n");
-            int[][] arr13 = new int[m1][n1];
-            for(int i=0;i<m1;i++) {
-            	for(int j=0;j<n1;j++) {
-            		arr13[i][j] = arr11[i][j]-arr12[i][j];
-            		System.out.print("\t"+arr13[i][j]);
-            	}
-            	System.out.println();
-            }
-            break;
-            
-/*-------------------------------------------------------------------------*/            
-            // Multiplication
-        case 4:
-            System.out.print("Enter row size: ");
-            int m2 = in.nextInt();
-            System.out.print("Enter column size: ");
-            int n2 = in.nextInt();
-            
-            int[][] arr21 = new int[m2][n2];
-            int[][] arr22 = new int[m2][n2];
-            System.out.println("Enter elements for 1st matrix: ");
-            for (int i = 0; i < m2; i++) {
-                for (int j = 0; j < n2; j++) {
-                    arr21[i][j] = in.nextInt();
-                }
-            }
-            System.out.println("Enter elements for 2nd matrix: ");
-            for (int i = 0; i < m2; i++) {
-                for (int j = 0; j < n2; j++) {
-                    arr22[i][j] = in.nextInt();
-                }
-            }
-            System.out.println("Addition : \n");
-            int[][] arr23 = new int[m2][n2];
-            for(int i=0;i<m2;i++) {
-            	for(int j=0;j<n2;j++) {
-            		arr23[i][j] = arr21[i][j]*arr22[i][j];
-            		System.out.print("\t"+arr23[i][j]);
-            	}
-            	System.out.println();
-            }
-            break;
-            
-/*-------------------------------------------------------------------------*/            
-            // Division
-	case 5:
-            System.out.print("Enter row size: ");
-            int m3 = in.nextInt();
-            System.out.print("Enter column size: ");
-            int n3 = in.nextInt();
-            
-            int[][] arr31 = new int[m3][n3];
-            int[][] arr32 = new int[m3][n3];
-            System.out.println("Enter elements for 1st matrix: ");
-            for (int i = 0; i < m3; i++) {
-                for (int j = 0; j < n3; j++) {
-                    arr31[i][j] = in.nextInt();
-                }
-            }
-            System.out.println("Enter elements for 2nd matrix: ");
-            for (int i = 0; i < m3; i++) {
-                for (int j = 0; j < n3; j++) {
-                    arr32[i][j] = in.nextInt();
-                }
-            }
-            System.out.println("Division : \n");
-            int[][] arr33 = new int[m3][n3];
-            for(int i=0;i<m3;i++) {
-            	for(int j=0;j<n3;j++) {
-            		arr33[i][j] = arr31[i][j]/arr32[i][j];
-            		System.out.print("\t"+arr33[i][j]);
-            	}
-            	System.out.println();
-            }
-            break;
-            
-/*-------------------------------------------------------------------------*/            
-            // Transpose
-        case 6:
-            System.out.print("Enter row size: ");
-            int m4 = in.nextInt();
-            System.out.print("Enter column size: ");
-            int n4 = in.nextInt();
-            
-            int[][] arr41 = new int[m4][n4];
-            System.out.println("Enter elements for 1st matrix: ");
-            for (int i = 0; i < m4; i++) {
-                for (int j = 0; j < n4; j++) {
-                    arr41[i][j] = in.nextInt();
-                }
-            }
-            System.out.println("Original Matrix : \n");
-            for(int i=0;i<m4;i++) {
-            	for(int j=0;j<n4;j++) {
-            		System.out.print("\t"+arr41[i][j]);
-            	}
-            	System.out.println();
-            }
-            System.out.println("Transpose : \n");
-            for(int i=0;i<m4;i++) {
-            	for(int j=0;j<n4;j++) {
-            		System.out.print("\t"+arr41[j][i]);
-            	}
-            	System.out.println();
-            }
-            break;
-            
-/*-------------------------------------------------------------------------*/
-            
-        case 7:
-        	findAndDisplayInverse();
-        	break;
-        	
-/*-------------------------------------------------------------------------*/        	
-        	
-        case 8:
-        	System.out.println("Exiting the program....");
-        	System.exit(0);
-        	
-/*-------------------------------------------------------------------------*/
-        	
-        default:
-        	System.out.println("Invalid choice...!");
         }
-       }
     }
-    
-/*-------------------------------------------------------------------------*/
-    // Function to find Inverse of matrix
-    public static void findAndDisplayInverse() {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Enter row size: ");
-        int m = in.nextInt();
-        System.out.print("Enter column size: ");
+
+    // --- HELPER METHODS ---
+
+    private static void fillMatrix(Scanner in, int[][] m, String name) {
+        System.out.println("Enter elements for " + name + ":");
+        for (int i = 0; i < m.length; i++)
+            for (int j = 0; j < m[0].length; j++) m[i][j] = in.nextInt();
+    }
+
+    private static void printMatrix(int[][][] mats, int k) {
+        for (int i = 0; i < mats.length; i++) {
+            for (int j = 0; j < mats[0].length; j++) System.out.print("\t" + mats[i][j][k]);
+            System.out.println();
+        }
+    }
+
+    private static void findAndDisplayInverse(Scanner in) {
+        System.out.print("Size of square matrix: ");
         int n = in.nextInt();
+        double[][] matrix = new double[n][n];
+        System.out.println("Enter elements:");
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) matrix[i][j] = in.nextDouble();
 
-        if (m != n) {
-            System.out.println("Matrix inversion is only possible for square matrices!");
-            return;
-        }
-
-        int[][] matrix = new int[m][n];
-        System.out.println("Enter elements: ");
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                matrix[i][j] = in.nextInt();
-            }
-        }
         
-        int[][] inverse = findInverse(matrix);
 
-        if (inverse == null) {
-            System.out.println("The matrix is singular and cannot be inverted.");
+        double[][] inv = calculateInverse(matrix);
+        if (inv == null) {
+            System.out.println("Singular matrix! No inverse exists.");
         } else {
-            System.out.println("Inverse of the matrix:");
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    System.out.print("\t" + inverse[i][j]);
-                }
+            System.out.println("Inverse Matrix:");
+            for (double[] row : inv) {
+                for (double val : row) System.out.printf("\t%.2f", val);
                 System.out.println();
             }
         }
     }
 
-    // Function to calculate the inverse of a matrix
-    public static int[][] findInverse(int[][] matrix) {
+    private static double[][] calculateInverse(double[][] matrix) {
         int n = matrix.length;
-        double[][] augmented = new double[n][2 * n];
-
-        // Create augmented matrix [A | I]
+        double[][] aug = new double[n][2 * n];
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                augmented[i][j] = matrix[i][j];
-            }
-            for (int j = n; j < 2 * n; j++) {
-                augmented[i][j] = (i == j - n) ? 1 : 0;
-            }
+            for (int j = 0; j < n; j++) aug[i][j] = matrix[i][j];
+            aug[i][i + n] = 1;
         }
 
-        // Perform Gaussian elimination
         for (int i = 0; i < n; i++) {
-            // Make the diagonal element 1
-            double diagElement = augmented[i][i];
-            if (diagElement == 0) {
-                return null; // Singular matrix
-            }
-            for (int j = 0; j < 2 * n; j++) {
-                augmented[i][j] /= diagElement;
-            }
-
-            // Make all other elements in the current column 0
+            double pivot = aug[i][i];
+            if (Math.abs(pivot) < 1e-10) return null;
+            for (int j = 0; j < 2 * n; j++) aug[i][j] /= pivot;
             for (int k = 0; k < n; k++) {
                 if (k != i) {
-                    double factor = augmented[k][i];
-                    for (int j = 0; j < 2 * n; j++) {
-                        augmented[k][j] -= factor * augmented[i][j];
-                    }
+                    double factor = aug[k][i];
+                    for (int j = 0; j < 2 * n; j++) aug[k][j] -= factor * aug[i][j];
                 }
             }
         }
 
-        // Extract the inverse matrix from the augmented matrix
-        int[][] inverse = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                inverse[i][j] = (int) Math.round(augmented[i][j + n]);
-            }
-        }
-
-        return inverse;
+        double[][] res = new double[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) res[i][j] = aug[i][j + n];
+        return res;
     }
 }
