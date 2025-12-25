@@ -30,9 +30,9 @@ A robust, console-based Java application designed to perform complex linear alge
 
 - Prerequisites: Ensure you have JDK installed.
 - Compile:
-    ![Compile](images/picture-1.jpg)
+    - ![Compile](images/picture-1.jpg)
 - Execute:
-    ![Run](images/picture-2.jpg)
+    - ![Run](images/picture-2.jpg)
 
 ---
 
@@ -44,7 +44,7 @@ A robust, console-based Java application designed to perform complex linear alge
 
 ## 📝 Example Usage
 
-![output](images/picture-4.jpg)
+![output](images/outputpic.jpg)
 
 ---
 
