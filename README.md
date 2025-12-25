@@ -1,4 +1,4 @@
-## 🧮 Matrix Manipulation Tool
+# 🧮 Matrix Manipulation Tool
 
 A robust, console-based Java application designed to perform complex linear algebra operations with mathematical precision. This tool handles everything from basic matrix arithmetic to advanced operations like Gaussian Elimination for matrix inversion.
 
@@ -17,11 +17,11 @@ A robust, console-based Java application designed to perform complex linear alge
 
 - The core of this application follows strict mathematical rules:
 
-# Matrix Multiplication :
+### Matrix Multiplication :
   - Unlike element-wise multiplication, this tool uses the standard algorithm:
     ![Formula](images/picture-1(1).jpg)
     
-# Matrix Inversion
+### Matrix Inversion
 - The program uses an Augmented Matrix [A | I ] approach. Through row operations, it transforms the left side into the Identity matrix, leaving the inverse on the right.
 
 ---
