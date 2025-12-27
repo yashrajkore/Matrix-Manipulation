@@ -29,6 +29,10 @@ A robust, console-based Java application designed to perform complex linear alge
 ## 💻 How to Run
 
 - Prerequisites: Ensure you have JDK installed.
+- Clone the repository :
+    ```
+    git clone https://github.com/yashrajkore/Matrix-Manipulation.git
+    ```
 - Compile:
     ```
     javac MatrixManipulation.java
