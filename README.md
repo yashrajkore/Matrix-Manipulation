@@ -30,9 +30,13 @@ A robust, console-based Java application designed to perform complex linear alge
 
 - Prerequisites: Ensure you have JDK installed.
 - Compile:
-    - ![Compile](images/picture-1.jpg)
+    ```
+    javac MatrixManipulation.java
+    ```
 - Execute:
-    - ![Run](images/picture-2.jpg)
+    ```
+    java MatrixManipulation.java
+    ```
 
 ---
 
