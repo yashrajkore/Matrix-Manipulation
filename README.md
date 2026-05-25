@@ -44,7 +44,7 @@ A robust, console-based Java application designed to perform complex linear alge
 
 ---
 
-## 📂 Project Structure
+## 📂 Project/Code Structure (Functions)
 
 ![File-structure](images/picture-3.jpg)
 
